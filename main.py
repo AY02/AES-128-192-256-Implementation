@@ -3,7 +3,12 @@
 
 import secrets # Required for token_bytes()
 
-s_box = (
+BLOCK_SIZE = 16 # Size in bytes of each plaintext block
+N_ROUNDS = 10 + 1 # Number of rounds + initial round for AES-128
+KEY_SIZE = 16 # Size in bytes of the key in AES-128
+ROUND_KEY_SIZE = 16 # Size in bytes of each round key
+
+S_BOX = (
     0x63, 0x7C, 0x77, 0x7B, 0xF2, 0x6B, 0x6F, 0xC5, 0x30, 0x01, 0x67, 0x2B, 0xFE, 0xD7, 0xAB, 0x76,
     0xCA, 0x82, 0xC9, 0x7D, 0xFA, 0x59, 0x47, 0xF0, 0xAD, 0xD4, 0xA2, 0xAF, 0x9C, 0xA4, 0x72, 0xC0,
     0xB7, 0xFD, 0x93, 0x26, 0x36, 0x3F, 0xF7, 0xCC, 0x34, 0xA5, 0xE5, 0xF1, 0x71, 0xD8, 0x31, 0x15,
@@ -22,8 +27,8 @@ s_box = (
     0x8C, 0xA1, 0x89, 0x0D, 0xBF, 0xE6, 0x42, 0x68, 0x41, 0x99, 0x2D, 0x0F, 0xB0, 0x54, 0xBB, 0x16
 ) # AES S-box (https://en.wikipedia.org/wiki/Rijndael_S-box)
 
-def sub_byte(b): # Non-linear substitution of a byte by using the AES S-box
-    return s_box[b]
+def sub_byte(byte): # Non-linear substitution of a byte by using the AES S-box
+    return S_BOX[byte]
 
 def rot_word(word): # 1-byte left circular shift
     word = tuple(word)
@@ -34,7 +39,7 @@ def sub_word(word): # Application of the AES S-box to each byte of the word
     return bytes((sub_byte(word[0]), sub_byte(word[1]), sub_byte(word[2]), sub_byte(word[3])))
 
 def key_expansion(key): # Key expansion step (https://en.wikipedia.org/wiki/AES_key_schedule)
-    rcon = (
+    R_CON = (
         (0x01, 0x00, 0x00, 0x00),
         (0x02, 0x00, 0x00, 0x00),
         (0x04, 0x00, 0x00, 0x00),
@@ -46,9 +51,9 @@ def key_expansion(key): # Key expansion step (https://en.wikipedia.org/wiki/AES_
         (0x1B, 0x00, 0x00, 0x00),
         (0x36, 0x00, 0x00, 0x00),
     ) # Round costants
-    N = 4 # Length of the key in 32-bit words
+    N = KEY_SIZE // 4 # Length of the key in 32-bit words
     K = (key[0:4], key[4:8], key[8:12], key[12:16]) # Split the key in 4 32-bit words
-    R = 11 # Number of round keys needed
+    R = N_ROUNDS # Number of round keys needed
     W = [] # 32-bit words of the expanded key
     for i in range(4 * R):
         if i < N:
@@ -56,7 +61,7 @@ def key_expansion(key): # Key expansion step (https://en.wikipedia.org/wiki/AES_
         elif (i >= N) and (i % N == 0):
             tmp1 = W[i - N]
             tmp2 = sub_word((rot_word(W[i - 1])))
-            tmp3 = rcon[(i // N) - 1]
+            tmp3 = R_CON[(i // N) - 1]
             tmp = (a ^ b ^ c for a, b, c in zip(tmp1, tmp2, tmp3))
             W.append(bytes(tmp))
         #if (i >= N) and (N > 6) and (i % N == 4) (Skipped because we only use 4-word keys)
@@ -68,21 +73,41 @@ def key_expansion(key): # Key expansion step (https://en.wikipedia.org/wiki/AES_
     round_keys = tuple(b''.join(W[i:i + N]) for i in range(0, 4 * R, N))
     return round_keys
 
-def padding_last_block(block): # PKCS padding method is used (https://www.ibm.com/docs/en/zos/2.4.0?topic=rules-pkcs-padding-method)
-    pass
+def pkcs_padding(plaintext): # PKCS padding method is used (https://www.ibm.com/docs/en/zos/2.4.0?topic=rules-pkcs-padding-method)
+    padding_length = BLOCK_SIZE - (len(plaintext) % BLOCK_SIZE)
+    padding = bytes((padding_length,)) * padding_length
+    return plaintext + padding
 
-def block_to_state(plaintext): # Conversion of a plaintext block to a 4 x 4 matrix (state)
-    pass
+def display_state(state): # Displays a state in matrix format
+    for row in state:
+        for byte in row:
+            print(f'0x{byte:02x}', end=' ')
 
-def process_plaintext(): # Converts a UNICODE string to a tuple of 128-bit blocks
-    pass
+def block_to_state(block): # Conversion of a plaintext block to a 4 x 4 matrix (state)
+    return (
+        (block[0], block[1], block[2], block[3]),
+        (block[4], block[5], block[6], block[7]),
+        (block[8], block[9], block[10], block[11]),
+        (block[12], block[13], block[14], block[15])
+    )
+
+def plaintext_to_states(plaintext): # Converts an utf-8 string to a tuple of 128-bit states
+    plaintext = plaintext.encode('utf-8')
+    plaintext = pkcs_padding(plaintext)
+    blocks = tuple(plaintext[i:i + BLOCK_SIZE] for i in range(0, len(plaintext), BLOCK_SIZE))
+    states = tuple(block_to_state(blocks[i]) for i in range(len(blocks)))
+    return states
 
 def aes128_encrypt(key, plaintext):
     round_keys = key_expansion(key)
+    states = plaintext_to_states(plaintext)
     return ''
-    pass
 
 #key = secrets.token_bytes(16) # Generate a random 16 byte key
 key = bytes.fromhex('e454f6a3538c69386a609ec484d44dea')
-plaintext = 'Hello, world!'
+
+input_filename = 'input.txt'
+with open(input_filename, 'r') as file:
+    plaintext = file.read()
+
 ciphertext = aes128_encrypt(key, plaintext)
