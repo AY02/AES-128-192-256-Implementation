@@ -1,0 +1,3 @@
+AES128: Non credo in me!
+AES192: aesEncryptionKeyABCDEFGH
+AES256: aesEncryptionKeyaesEncryptionLOL
