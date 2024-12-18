@@ -1,5 +1,5 @@
-# AES-128-implementation
-Implementation of AES-128 cipher with PKCS padding and ECB/CBC modes.
+# AES-128-192-256-Umplementation
+Implementation of AES-128, 192, 256 cipher with PKCS padding and ECB/CBC modes.
 
 Edit file values ​​to change the inputs.
 
