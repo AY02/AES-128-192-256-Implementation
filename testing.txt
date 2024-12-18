@@ -1,0 +1,92 @@
+Tool used for expected values: https://www.devglan.com/online-tools/aes-encryption-decryption
+
+In each test, the plaintext is first encrypted to obtain the result ciphertext and then the ciphertext is decrypted to obtain the result plaintext.
+
+12 tests in total:
+    4 tests for AES128:
+        2 tests in ECB mode:
+            Test 1 (Passed):
+                Key:                   Life's great man
+                Expected Plaintext:    Life is like a puzzle; sometimes, the missing piece is just around the corner. Keep searching, and don't give up!
+                Result Plaintext:      Life is like a puzzle; sometimes, the missing piece is just around the corner. Keep searching, and don't give up!
+                Expected Ciphertext:   6052bc304e27ee24bad3a972762cb67ee4e25b2ff023e7cd5c594e4b7bccc8380c0740b117c4ace8df3a7796458a05c7342714b21a83db2bdbf0ab37a46ca01841a48cce0741f27ccc459b925e217422de93d866b506e8a6b566549f8670f9e964389e432dd20b9894b6d3589c16abe121651325996d50713485dc7188e88f41
+                Result Ciphertext:     6052bc304e27ee24bad3a972762cb67ee4e25b2ff023e7cd5c594e4b7bccc8380c0740b117c4ace8df3a7796458a05c7342714b21a83db2bdbf0ab37a46ca01841a48cce0741f27ccc459b925e217422de93d866b506e8a6b566549f8670f9e964389e432dd20b9894b6d3589c16abe121651325996d50713485dc7188e88f41
+            Test 2 (Passed):
+                Key:                   I really see AES
+                Expected Plaintext:    The rain fell gently, while the scent of coffee filled the air.
+                Result Plaintext:      The rain fell gently, while the scent of coffee filled the air.
+                Expected Ciphertext:   b4cdec4c8e81b7b55d7adc90c34c76a4260d0a5fd7d8e5c1cb28ad76028995d6041678ac3f91ef8dc4648b6a0f4bd5c976e6dfd462e8dc4c8458c04495a67060
+                Result Ciphertext:     b4cdec4c8e81b7b55d7adc90c34c76a4260d0a5fd7d8e5c1cb28ad76028995d6041678ac3f91ef8dc4648b6a0f4bd5c976e6dfd462e8dc4c8458c04495a67060
+        2 tests in CBC mode:
+            test 3 (Passed):
+                Key:                   Hold fast to hop
+                Initialization vector: The sun is high.
+                Expected Plaintext:    The night sky is filled with endless possibilities.
+                Result Plaintext:      The night sky is filled with endless possibilities.
+                Expected Ciphertext:   6111a5494ec18b180d71871e15ad9ae5db7c54bea86d4f871da6b40dfd81fe54c2e7c4c194959573212174efac4451097791833ee7599428216df96492206a16
+                Result Ciphertext:     6111a5494ec18b180d71871e15ad9ae5db7c54bea86d4f871da6b40dfd81fe54c2e7c4c194959573212174efac4451097791833ee7599428216df96492206a16
+            test 4 (Passed):
+                Key:                   The ocean is dee
+                Initialization vector: Find your true p
+                Expected Plaintext:    Kindness is the language the world understands. Kindness is the language the world understands.
+                Result Plaintext:      Kindness is the language the world understands. Kindness is the language the world understands.
+                Expected Ciphertext:   1d91ebb55199595f245c98334a882ae00d7c003b1473c84cdfcad11fbf1334b072326cbb2c22f50a2c15eecc5b6383ea7fdf023e63dade3b10d72ac257fde56bd60234fe2afe6a20e6cdbf679ce284f4f2c6c0036cc91df3c400d57d5ce30599
+                Result Ciphertext:     1d91ebb55199595f245c98334a882ae00d7c003b1473c84cdfcad11fbf1334b072326cbb2c22f50a2c15eecc5b6383ea7fdf023e63dade3b10d72ac257fde56bd60234fe2afe6a20e6cdbf679ce284f4f2c6c0036cc91df3c400d57d5ce30599
+    4 tests for AES192:
+        2 tests in ECB mode:
+            test 5 (Passed):
+                Key:                   From the earliest daysss
+                Expected Plaintext:    In the vast expanse of human history, the quest for knowledge and understanding has been one of the driving forces that has shaped the course of civilizations.
+                Result Plaintext:      In the vast expanse of human history, the quest for knowledge and understanding has been one of the driving forces that has shaped the course of civilizations.
+                Expected Ciphertext:   dd36a61091151e89c2edcc8a5bdd198ff00aa8ad88be2fac78cb3c4e73d8c6bfa7435bf0794c6b2f919140fc02078f7cbb42e0dc92aa2291ffc9caf30f036127f41b6db3a9b067ce51663e3ad9ad83e3955dfcb61662aeb738f8590444cdd95b05652f8fec34c1307208140682e032fee78c534d5229017f7ca729fff957a0e32097dd458d45645d79365a9d8e6c60a7c18cd97514e800be03101c31488e52b8
+                Result Ciphertext:     dd36a61091151e89c2edcc8a5bdd198ff00aa8ad88be2fac78cb3c4e73d8c6bfa7435bf0794c6b2f919140fc02078f7cbb42e0dc92aa2291ffc9caf30f036127f41b6db3a9b067ce51663e3ad9ad83e3955dfcb61662aeb738f8590444cdd95b05652f8fec34c1307208140682e032fee78c534d5229017f7ca729fff957a0e32097dd458d45645d79365a9d8e6c60a7c18cd97514e800be03101c3148
+            test 6 (Passed):
+                Key:                   to the present day, I am
+                Expected Plaintext:    From the earliest days of recorded time, when early humans began to grasp the concept of written language
+                Result Plaintext:      From the earliest days of recorded time, when early humans began to grasp the concept of written language
+                Expected Ciphertext:   bf1143777b053dfe86ccd80f0d5750e39b73a0844837d677aef2a3548b874341cbde1943e239784a83c2f8f5db6847480cf0f2caeb14c30624cee87dd06b1f09b69fb82cf0a9e21a9bf11aa07f13a0e9496e3b668ba3b7921833c2ca38784ba7f40cecb157fe7a1bc55ef26d1a3c5d54
+                Result Ciphertext:     bf1143777b053dfe86ccd80f0d5750e39b73a0844837d677aef2a3548b874341cbde1943e239784a83c2f8f5db6847480cf0f2caeb14c30624cee87dd06b1f09b69fb82cf0a9e21a9bf11aa07f13a0e9496e3b668ba3b7921833c2ca38784ba7f40cecb157fe7a1bc55ef26d1a3c5d54
+        2 tests in CBC mode:
+            test 7 (Passed):
+                Key:                   At the heart of this que
+                Initialization vector: lies curiosityyy
+                Expected Plaintext:    where we can communicate instantaneously across the globe through advanced digital technologies, the pursuit of knowledge has been a fundamental part of human nature.
+                Result Plaintext:      where we can communicate instantaneously across the globe through advanced digital technologies, the pursuit of knowledge has been a fundamental part of human nature.
+                Expected Ciphertext:   ee69238e3863580f33e26396b41ed0d4a94fb4534f9a59dad67014f0c9fa950a8f8c91e6dda39eba625f331b40b2aca0a9abe084c30d1ceaf8fa648368bff9f9d7ce22adfd2aa5d8ed1eaf5e537daf19bc71995c4561bb16510ecfd834d6ef9e2bfbd631edac2c84e2df5e160ac764c7b654f96b44e2325e30eddc82918eea705708e457058bf678587717a7fe69f5c480edac1dce5a92aa080c7b313bd9b766676472b0d904430831fd52783a5cd593
+                Result Ciphertext:     ee69238e3863580f33e26396b41ed0d4a94fb4534f9a59dad67014f0c9fa950a8f8c91e6dda39eba625f331b40b2aca0a9abe084c30d1ceaf8fa648368bff9f9d7ce22adfd2aa5d8ed1eaf5e537daf19bc71995c4561bb16510ecfd834d6ef9e2bfbd631edac2c84e2df5e160ac764c7b654f96b44e2325e30eddc82918eea705708e457058bf678587717a7fe69f5c480edac1dce5a92aa080c7b313bd9b766676472b0d904430831fd52783a5cd593
+            test 8 (Passed):
+                Key:                   This curiosity has led t
+                Initialization vector: development of s
+                Expected Plaintext:    innate drive to explore the world around us, to question the unknown, and to seek out answers to the mysteries of life.
+                Result Plaintext:      innate drive to explore the world around us, to question the unknown, and to seek out answers to the mysteries of life.
+                Expected Ciphertext:   97b9426acf842ccb8950cdae4970a9e2ddd7bb070f21948cbe9ccb986871a72ddd0ed4f478c5ffd0ceeba92ba54c27534385b81af8dd4bebabd970a7c687ff24b4622cb78eb4cf0f6c35bfcd24d808d11aea9c39447e6f3dd157fb67562558b8d903343cfa102fffa03d92b57499a1956fda7fe954823a528d5bc2d7102dada6
+                Result Ciphertext:     97b9426acf842ccb8950cdae4970a9e2ddd7bb070f21948cbe9ccb986871a72ddd0ed4f478c5ffd0ceeba92ba54c27534385b81af8dd4bebabd970a7c687ff24b4622cb78eb4cf0f6c35bfcd24d808d11aea9c39447e6f3dd157fb67562558b8d903343cfa102fffa03d92b57499a1956fda7fe954823a528d5bc2d7102dada6
+    4 tests for AES256:
+        2 tests in ECB mode:
+            test 9 (Passed):
+                Key:                   Whether through the study of the
+                Expected Plaintext:    philosophy, art, and many other fields that seek to make sense of the universe and our place within it.
+                Result Plaintext:      philosophy, art, and many other fields that seek to make sense of the universe and our place within it.
+                Expected Ciphertext:   7682a9059a1b9974c1a8b7bd719c6eb0df926e72f2dd02b6a85cd56f96321435b6b9bc4dbd6d8804991b037eef1a02e436f4cfad2b6f3c6d337adc22717b69578f9e92d3395213e1464847f8c2b62ebaf7b04935cf5da0f968d9578370e364c8b6216fbb89dc83cfb6e17c3fcb1a6dd7
+                Result Ciphertext:     7682a9059a1b9974c1a8b7bd719c6eb0df926e72f2dd02b6a85cd56f96321435b6b9bc4dbd6d8804991b037eef1a02e436f4cfad2b6f3c6d337adc22717b69578f9e92d3395213e1464847f8c2b62ebaf7b04935cf5da0f968d9578370e364c8b6216fbb89dc83cfb6e17c3fcb1a6dd7
+            test 10 (Passed):
+                Key:                   I really like cryptography and s
+                Expected Plaintext:    the stars in ancient civilizations, the development of early mathematics and geometry, or the rise of modern technology
+                Result Plaintext:      the stars in ancient civilizations, the development of early mathematics and geometry, or the rise of modern technology
+                Expected Ciphertext:   c66324da16c415d16719d32533444adbfe1615eedca672a4b7f4dd37e67b57a2f1275cbfa1aaa85e71040c1ffd09ae78c3abb769565167089dba5fedc45cbaaa3c853192dcd6121dec7d73e798dcd4a0273a42b3e259aaf309777df110fc1faad6769b002a8937c849942941e97d97c279e74f7e49da7e351d5bdd47b7cbb6c8
+                Result Ciphertext:     c66324da16c415d16719d32533444adbfe1615eedca672a4b7f4dd37e67b57a2f1275cbfa1aaa85e71040c1ffd09ae78c3abb769565167089dba5fedc45cbaaa3c853192dcd6121dec7d73e798dcd4a0273a42b3e259aaf309777df110fc1faad6769b002a8937c849942941e97d97c279e74f7e49da7e351d5bdd47b7cbb6c8
+        2 tests in CBC mode:
+            test 11 (Passed):
+                Key:                   The invention of the printing pr
+                Initialization vector: century revoluti
+                Expected Plaintext:    One of the most profound aspects of this intellectual journey has been the way in which knowledge has been shared and transmitted across generations.
+                Result Plaintext:      One of the most profound aspects of this intellectual journey has been the way in which knowledge has been shared and transmitted across generations.
+                Expected Ciphertext:   98a106a27e3a30802c5a05ac57ba6878af166f58d1acd1ef3ef460c5c3a4db8a12c4087c24e774456c8ec565ba8fe0dd46bed1fb2d3ab3cadba725ec2062da39397e507aaf77313d3327dd11bebe1b34bfeab3c044f1361880814a5f8fe6dc5599a44017613d9b14bc5d8a7534e8676a456da6442c674c8fc3d8f3e2a2665ffc79216f34d0e36220c3fd7d3dfb165933ffb1d8f50ebab99442cc5a9261fdc61b
+                Result Ciphertext:     98a106a27e3a30802c5a05ac57ba6878af166f58d1acd1ef3ef460c5c3a4db8a12c4087c24e774456c8ec565ba8fe0dd46bed1fb2d3ab3cadba725ec2062da39397e507aaf77313d3327dd11bebe1b34bfeab3c044f1361880814a5f8fe6dc5599a44017613d9b14bc5d8a7534e8676a456da6442c674c8fc3d8f3e2a2665ffc79216f34d0e36220c3fd7d3dfb165933ffb1d8f50ebab99442cc5a9261fdc61b
+            test 12 (Passed):
+                Key:                   a period of unprecedented intell
+                Initialization vector: and cultural gro
+                Expected Plaintext:    the spread of ideas, allowing for the mass production of books and other written works. This in turn led to the Renaissance
+                Result Plaintext:      the spread of ideas, allowing for the mass production of books and other written works. This in turn led to the Renaissance
+                Expected Ciphertext:   8cf1e236332a906c84ae52f33c74ad966a39c60fd3cfbde49444fad881342672bd05da9ceeefc3f48ecb46c69f233a8d60bebd707f5a76f272dbb255ae49ca72e68484b22a9c0ba30dbc529186ec92aed32e2fd679b86f56247021bd4bcc745defdc4f4eb5f7c3fcbc64defe78ca8937d98030211252f8cd655ef65e4896e4a0
+                Result Ciphertext:     8cf1e236332a906c84ae52f33c74ad966a39c60fd3cfbde49444fad881342672bd05da9ceeefc3f48ecb46c69f233a8d60bebd707f5a76f272dbb255ae49ca72e68484b22a9c0ba30dbc529186ec92aed32e2fd679b86f56247021bd4bcc745defdc4f4eb5f7c3fcbc64defe78ca8937d98030211252f8cd655ef65e4896e4a0
